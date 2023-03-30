@@ -5,6 +5,7 @@ module com.example.simplehibernate {
 
     requires org.controlsfx.controls;
     requires eu.hansolo.tilesfx;
+    requires java.sql;
 
     opens com.example.simplehibernate to javafx.fxml;
     exports com.example.simplehibernate;
