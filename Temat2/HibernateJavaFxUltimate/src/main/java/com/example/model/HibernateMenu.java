@@ -1,7 +1,5 @@
-package com.example.MySQL;
+package com.example.model;
 
-import com.example.data.Student;
-import com.example.data.Class;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -15,7 +13,8 @@ public class HibernateMenu {
     static SessionFactory factory;
     static Session session;
     static Boolean isRun = true;
-    public static void main(String[] args)  {
+
+    public static void main(String[] args) {
 
         Scanner s = new Scanner(System.in);
         Scanner string = new Scanner(System.in);
@@ -154,4 +153,3 @@ public class HibernateMenu {
     }
 
 }
-

@@ -1,7 +1,6 @@
-package com.example.data;
+package com.example.simplehibernate;
 
 import jakarta.persistence.*;
-
 import java.util.Random;
 
 @Embeddable

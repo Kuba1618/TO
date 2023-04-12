@@ -1,8 +1,7 @@
-package com.example.data;
+package com.example.model;
 
 import com.github.javafaker.Faker;
 import jakarta.persistence.*;
-
 import java.util.Locale;
 import java.util.Random;
 
@@ -24,9 +23,8 @@ public class Student {
     @Embedded
     private Class studentClasses;
 
-
     public Student(){
-
+        
     }
 
     public Student(int id, String firstName, String lastName, String email, Class studentClasses) {
@@ -136,4 +134,3 @@ public class Student {
     }
 
 }
-
