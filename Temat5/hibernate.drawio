@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-04-22T10:47:08.715Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 OPR/97.0.0.0" etag="FuEiy5fhsrfWnpRTZBdq" version="21.2.1" type="device" pages="2">
+<mxfile host="app.diagrams.net" modified="2023-04-27T15:04:42.465Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 OPR/97.0.0.0" etag="nRX6EY7Azw8gNmiWWDOI" version="21.2.1" type="device" pages="2">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="musicDatabaseDiagram">
     <mxGraphModel dx="1176" dy="631" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
@@ -297,10 +297,10 @@
         <mxCell id="KmhhjKGMAi6N5h4Ck35y-14" value="int insuranceNumber" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="KmhhjKGMAi6N5h4Ck35y-12" vertex="1">
           <mxGeometry y="52" width="160" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="exA51apv8BzhIc2PtDE5-1" value="Vehicle vehicleId" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="KmhhjKGMAi6N5h4Ck35y-12">
+        <mxCell id="exA51apv8BzhIc2PtDE5-1" value="Vehicle vehicleId" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="KmhhjKGMAi6N5h4Ck35y-12" vertex="1">
           <mxGeometry y="78" width="160" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="exA51apv8BzhIc2PtDE5-2" value="Course courseId" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="KmhhjKGMAi6N5h4Ck35y-12">
+        <mxCell id="exA51apv8BzhIc2PtDE5-2" value="List&lt;Course&gt; listOfCourses" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="KmhhjKGMAi6N5h4Ck35y-12" vertex="1">
           <mxGeometry y="104" width="160" height="26" as="geometry" />
         </mxCell>
         <mxCell id="KmhhjKGMAi6N5h4Ck35y-15" value="" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="KmhhjKGMAi6N5h4Ck35y-12" vertex="1">
