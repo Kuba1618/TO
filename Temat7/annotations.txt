@@ -1,0 +1,7 @@
+@Entity - encja klasy
+@Table - tabela bazy
+@Column
+@Basic
+@Transient - pomijanie pola klasy w tworzeniu kollumn do bazy danych (bo jest jakby statyczne)
+@Temporal - sprecyzowanie typu (np.TemporalType.DATE i zamiast całej daty + czasu mamy samą datę)
+@Lob - np. przy polu String decription (długi opis)
