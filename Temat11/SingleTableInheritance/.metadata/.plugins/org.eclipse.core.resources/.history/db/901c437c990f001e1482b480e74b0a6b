@@ -1,0 +1,56 @@
+package pl.kielce.entity.persons;
+
+import java.sql.Date;
+import java.util.Random;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+import com.github.javafaker.Faker;
+
+@Entity
+public class PhysicalWorker extends Employee{
+	
+	@Column(name="start_job_date")
+	private Date startJobDate;
+	@Enumerated(EnumType.STRING)
+	private Department department;
+	
+	public Date getStartJobDate() {
+		return startJobDate;
+	}
+	
+	public void setStartJobDate(Date date) {
+		this.startJobDate = date;
+	}
+	
+	public Department getDepartment() {
+		return department;
+	}
+	
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+	
+	public void generatePhysicalWorker()
+	{
+		Random r = new Random();
+		Faker faker = new Faker();
+		generateEmployee();
+		
+		//setting PhysicalWorker
+		
+		//java.util.Date utilDate = faker.date().between(new Date("2000-01-01"),new Date("2023-07-18"));
+		//Date randomDate = (Date) faker.date().birthday();
+
+        //Date randomDate = new Date(faker.date().past(3650, TimeUnit.DAYS).getTime());
+		Date sqlDate = new Date(faker.date().birthday().getTime());
+		setStartJobDate(sqlDate);
+		//char c = (char)(r.nextInt('z' - 'a') + 'a');
+		setDepartment(Department.randomDepartment());	
+		
+	}
+
+}

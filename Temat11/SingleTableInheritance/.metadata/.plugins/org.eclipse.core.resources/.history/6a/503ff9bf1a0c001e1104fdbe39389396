@@ -1,0 +1,10 @@
+package pl.kielce.entity;
+
+public enum TypeOfMotorcycle {
+	SPORT,
+	ENDURO,
+	CROSS,
+	STREET,
+	SCOOTER,
+	TOURING
+}

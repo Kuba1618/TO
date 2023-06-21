@@ -1,0 +1,33 @@
+package pl.kielce.tu;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import pl.kielce.entity.vehicles.Scooter;
+
+public class NewTest {
+
+		public static void main(String[] args) {
+			//Faker faker = new Faker(new Locale("pl-PL"));
+			
+			SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+			Session session = sessionFactory.openSession();
+			
+			session.beginTransaction();
+			
+			for(int i = 0; i < 500; i++) {
+				
+				Scooter scooter = new Scooter();
+			    scooter.generateScooter();
+
+				session.save(car); 
+			}
+			
+			session.getTransaction().commit();
+			
+			session.close();
+
+		}
+
+	}

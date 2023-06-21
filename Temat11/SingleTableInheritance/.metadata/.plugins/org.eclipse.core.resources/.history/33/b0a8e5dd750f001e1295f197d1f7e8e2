@@ -1,0 +1,50 @@
+package pl.kielce.entity.persons;
+
+import java.util.Random;
+
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+import pl.kielce.entity.Course;
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public class Teacher extends OfficeWorker{
+
+	@Column(name="numberOfHourClasses")
+	private int numberOfHourClasses;
+	
+	@OneToOne
+	private Course course;
+	
+	public int getNumberOfHourClasses() {
+		return numberOfHourClasses;
+	}
+	
+	public void setNumberOfHourClasses(int numberOfHourClasses) {
+		this.numberOfHourClasses = numberOfHourClasses;
+	}
+	
+	public Course getCourse() {
+		return course;
+	}
+	
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+	
+	public void generateTeacher(){
+		Random generator = new Random();
+		generateOfficeWorker();
+		
+		//generate Teacher
+		int numberOfHours = generator.nextInt(25 - 5 + 1) + 5;
+		setNumberOfHourClasses(numberOfHours);
+		
+		//setCourse() must be called in test class
+	}
+	
+}

@@ -1,0 +1,55 @@
+package pl.kielce.entity.persons;
+
+import java.util.Random;
+
+import javax.persistence.Column;
+
+import com.github.javafaker.Faker;
+
+public class OfficeWorker extends Employee{
+	
+	@Column (name = "room")
+	private String room;
+	@Enumerated
+	private Degree degree;
+	@Column(name = "position")
+	private String position;
+	
+	
+	public String getRoom() {
+		return room;
+	}
+
+	public void setRoom(String room) {
+		this.room = room;
+	}
+
+	public Degree getDegree() {
+		return degree;
+	}
+
+	public void setDegree(Degree degree) {
+		this.degree = degree;
+	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
+
+	public void generateOfficeWorker()
+	{
+		Faker faker = new Faker();
+		Random generator = new Random();
+		generateEmployee();
+		float roomNumber = Math.round((1.0F + generator.nextFloat() * (5.4F - 1.0F)) * 100.0F) / 100.0F;
+		String buildings = "ABCD";
+	    setRoom(roomNumber + " "+ buildings.charAt(generator.nextInt(buildings.length())));
+		setDegree(Degree.randomDegree());
+		setPosition(faker.job().position());
+	}
+
+}

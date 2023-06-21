@@ -1,0 +1,54 @@
+package pl.kielce.entity.vehicles;
+
+import java.util.Random;
+
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+@Entity
+@DiscriminatorValue("Motorcycle")
+public class Motorcycle extends CombustionVehicle{
+
+	@Column (name = "max_speed")
+	private int maxSpeed;
+	@Enumerated(EnumType.ORDINAL) //@ToDo - sprawdzić różnicę pomiędzy STRING i ORDINAL
+	private MotorType motorType;
+
+    public Motorcycle(){
+    	
+    }
+    
+	public int getMaxSpeed() {
+		return maxSpeed;
+	}
+
+	public void setMaxSpeed(int maxSpeed) {
+		this.maxSpeed = maxSpeed;
+	}
+
+	public MotorType getMotorType() {
+		return motorType;
+	}
+
+	public void setMotorType(MotorType motorType) {
+		this.motorType = motorType;
+	}
+
+    public void generateMotorcycle()
+    {
+        Random generator = new Random();
+        //setting vehicle attributes
+        setSingleTrack(true);
+        //setting combustion attributes
+        float randomEngineSize = generator.nextFloat() * (1.8f - 0.5f) + 50;
+        setEngineSize(randomEngineSize);
+        float randomMileage = generator.nextFloat() * (35.000F - 5.000F) + 5.000F;
+        setMileage(randomMileage);
+        //setting motorcycle attributes
+        setMotorType(MotorType.randomMotorType());
+        setMaxSpeed(motorType.maxSpeed);
+    }
+}

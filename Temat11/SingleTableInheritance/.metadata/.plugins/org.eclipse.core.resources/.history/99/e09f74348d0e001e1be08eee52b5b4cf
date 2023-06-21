@@ -1,0 +1,42 @@
+package pl.kielce.entity.persons;
+
+import java.util.Random;
+
+import javax.persistence.Column;
+
+import com.github.javafaker.Faker;
+
+public class AssistantProfessor extends Teacher{
+
+	@Column(name="other_job")
+	private String otherJob;
+	@Column(name = "can_english")
+	private boolean canEnglish;
+
+	public String getOtherJob() {
+		return otherJob;
+	}
+
+	public void setOtherJob(String otherJob) {
+		this.otherJob = otherJob;
+	}
+
+	public boolean isCanEnglish() {
+		return canEnglish;
+	}
+
+	public void setCanEnglish(boolean canEnglish) {
+		this.canEnglish = canEnglish;
+	}
+
+	public void generateAssistantProfessor()
+	{
+		Random generator = new Random();
+		Faker faker = new Faker();
+		generateTeacher();
+		setOtherJob(faker.job().title());
+		boolean canEnglish = generator.nextBoolean();
+		setCanEnglish(canEnglish);
+		
+	}
+}

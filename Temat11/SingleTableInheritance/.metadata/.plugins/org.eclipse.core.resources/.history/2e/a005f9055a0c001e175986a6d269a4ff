@@ -1,0 +1,14 @@
+package pl.kielce.entity.persons;
+
+import com.github.javafaker.Faker;
+
+public class Employee {
+	
+	
+	
+	public void generateEmployee() {
+		Faker faker = new Faker();
+		faker.educator().campus();
+	}
+
+}

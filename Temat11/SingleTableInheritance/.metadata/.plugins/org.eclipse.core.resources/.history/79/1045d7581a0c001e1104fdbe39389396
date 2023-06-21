@@ -1,0 +1,10 @@
+package pl.kielce.entity;
+
+public enum Fuel {
+	
+	DIESEL,
+	PETROL,
+	LPG,
+	ELECTRIC,
+	HYBRID
+}

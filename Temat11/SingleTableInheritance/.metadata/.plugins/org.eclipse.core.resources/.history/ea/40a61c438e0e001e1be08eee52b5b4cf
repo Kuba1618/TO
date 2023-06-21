@@ -1,0 +1,25 @@
+package pl.kielce.entity.persons;
+
+import com.github.javafaker.Faker;
+
+public class TechnicalWorker extends OfficeWorker{
+	
+	@Column(name="experience_level")
+	private String experienceLevel;
+
+	public String getExperienceLevel() {
+		return experienceLevel;
+	}
+
+	public void setExperienceLevel(String experienceLevel) {
+		this.experienceLevel = experienceLevel;
+	}
+
+	public void generateTechnicalWorker()
+	{
+		Faker faker = new Faker();
+		generateOfficeWorker();
+		//setting technicalWorker
+		setExperienceLevel(faker.options().option("Podstawowy", "Średniozaawansowany", "Zaawansowany")); 
+	}
+}

@@ -1,0 +1,27 @@
+package pl.kielce.entity.persons;
+
+import pl.kielce.entity.Course;
+
+public class Teacher {
+
+	private int numberOfHourClasses;
+	private Course course;
+	
+	public int getNumberOfHourClasses() {
+		return numberOfHourClasses;
+	}
+	public void setNumberOfHourClasses(int numberOfHourClasses) {
+		this.numberOfHourClasses = numberOfHourClasses;
+	}
+	public Course getCourse() {
+		return course;
+	}
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+	
+	public void generateTeacher(){
+		
+	}
+	
+}

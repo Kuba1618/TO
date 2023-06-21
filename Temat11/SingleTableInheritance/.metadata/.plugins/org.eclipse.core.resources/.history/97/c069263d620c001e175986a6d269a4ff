@@ -1,0 +1,10 @@
+package pl.kielce.entity.persons;
+
+public enum Degree {
+	
+	MSC("M.Sc"),
+	PhD("Ph.D."),
+	PROF("Prof."),
+	DSC("D.Sc.");
+
+}
