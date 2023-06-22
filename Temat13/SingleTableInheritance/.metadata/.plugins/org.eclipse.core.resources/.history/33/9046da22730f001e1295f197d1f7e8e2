@@ -1,0 +1,45 @@
+package pl.kielce.entity.vehicles;
+
+import java.util.Random;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+@Entity(name="Bike")
+public class Bike extends Vehicle{
+	
+	@Column (name = "size_of_wheels")
+	private int sizeOfWheels;
+	@Column (name = "number_of_gears")
+	private int numberOfGears;
+	
+	public Bike(){
+		
+	}
+	
+	public int getNumberOfGears() {
+		return numberOfGears;
+	}
+	
+	public void setNumberOfGears(int numberOfGears) {
+		this.numberOfGears = numberOfGears;
+	}
+	
+	public int getSizeOfWheels() {
+		return sizeOfWheels;
+	}
+
+	public void setSizeOfWheels(int sizeOfWheels) {
+		this.sizeOfWheels = sizeOfWheels;
+	}
+
+	public void generateBike()
+	{
+		Random random = new Random();
+		setSingleTrack(true);
+		
+		//generate Bike
+		setSizeOfWheels(random.nextInt() % 2 == 0 ? 26 : 28);
+		setNumberOfGears(random.nextInt() * 24);
+	}
+}

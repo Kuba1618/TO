@@ -1,0 +1,48 @@
+package pl.kielce.entity.vehicles;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public class Vehicle{
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int vehicleId;
+  
+    @Column(name="single_track")
+    private boolean singleTrack;
+
+    
+    public int getVehicleId() {
+		return vehicleId;
+	}
+
+    public void setVehicleId(int vehicleId) {
+        this.vehicleId = vehicleId;
+    }
+    
+    public boolean isSingleTrack() {
+        return singleTrack;
+    }
+
+    public void setSingleTrack(boolean singleTrack) {
+        this.singleTrack = singleTrack;
+    }
+    
+    //DO NOT need generateVehicle, because id is generate by MySQL and singleTrack field is setting by child classes in their constructor
+
+}
+
+
+
+
+
+
+

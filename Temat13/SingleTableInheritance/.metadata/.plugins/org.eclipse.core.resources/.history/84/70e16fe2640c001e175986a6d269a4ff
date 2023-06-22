@@ -1,0 +1,45 @@
+package pl.kielce.entity.persons;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
+import pl.kielce.entity.vehicles.MotorType;
+
+public enum Degree {
+	
+	MASTER_OF_SCIENCE("M.Sc"),
+	DOCTOR_OF_PHILOSOPHY("Ph.D."),
+	PROFFESOR("Prof."),
+	DOCTOR_OF_SCIENCE("D.Sc");
+
+	private static final List<Degree> DEGREES =
+    Collections.unmodifiableList(Arrays.asList(values()));
+	private static final int SIZE = DEGREES.size();
+	private static final Random RANDOM = new Random();
+	
+	public static Degree randomMotorType() {
+		 return DEGREES.get(RANDOM.nextInt(SIZE));
+	}
+
+    public final String label;
+    private static final Map<String, Degree> BY_LABEL = new HashMap<>();
+    
+    static {
+        for (Degree d : values()) {
+            BY_LABEL.put(d.label, d);
+        }
+    }
+
+    private Degree(String label) {
+        this.label = label;
+    }
+
+	public static Degree valueOfLabel(String label) {
+        return BY_LABEL.get(label);
+    }
+
+}

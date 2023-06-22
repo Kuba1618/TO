@@ -1,0 +1,13 @@
+package pl.kielce.entity;
+
+import javax.persistence.*;
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public class VehicleId implements VehicleInterface {
+	
+
+	
+	
+
+}

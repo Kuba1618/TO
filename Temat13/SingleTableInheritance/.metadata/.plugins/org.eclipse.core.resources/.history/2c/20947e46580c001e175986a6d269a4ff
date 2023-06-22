@@ -1,0 +1,15 @@
+package pl.kielce.entity.persons;
+
+public class TechnicalWorker {
+	
+	private String experienceLevel;
+
+	public String getExperienceLevel() {
+		return experienceLevel;
+	}
+
+	public void setExperienceLevel(String experienceLevel) {
+		this.experienceLevel = experienceLevel;
+	}
+
+}

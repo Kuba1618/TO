@@ -1,0 +1,12 @@
+package pl.kielce.entity.persons;
+
+import java.util.Date;
+
+public class PhysicalWorker {
+	
+	private Date startJobDate;
+	private char department;
+	
+	
+
+}

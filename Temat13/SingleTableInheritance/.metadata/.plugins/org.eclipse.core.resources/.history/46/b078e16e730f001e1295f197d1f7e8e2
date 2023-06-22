@@ -1,0 +1,49 @@
+package pl.kielce.entity.vehicles;
+
+import java.util.Random;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+@Entity(name="Scooter")
+public class Scooter extends Vehicle{
+	
+	@Column (name = "is_electric")
+	private boolean isElectric;
+	@Column (name = "has_display")
+	private boolean hasDisplay;
+	
+	
+	public Scooter(boolean isElectric, boolean hasDisplay) {
+		super();
+		this.isElectric = isElectric;
+		this.hasDisplay = hasDisplay;
+	}
+
+	public boolean isHasDisplay() {
+		return hasDisplay;
+	}
+	public void setHasDisplay(boolean hasDisplay) {
+		this.hasDisplay = hasDisplay;
+	}
+	
+	public boolean isElectric() {
+		return isElectric;
+	}
+
+	public void setElectric(boolean isElectric) {
+		this.isElectric = isElectric;
+	}
+
+	public void generateScooter()
+	{
+		Random random = new Random();
+		//setting Vehicle
+		setSingleTrack(true);
+		
+		//generateScooter
+		setElectric(random.nextInt() %2 == 0 ? true : false);
+		setHasDisplay(random.nextInt() %2 == 0 ? true : false);
+	}
+
+}

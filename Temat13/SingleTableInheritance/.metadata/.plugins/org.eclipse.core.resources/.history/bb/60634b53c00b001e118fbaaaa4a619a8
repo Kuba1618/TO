@@ -1,0 +1,27 @@
+package pl.kielce.entity;
+
+import javax.persistence.Column;
+
+public class Bike {
+	
+	@Column (name = "size_of_wheels")
+	private int sizeOfWheels;
+	@Column (name = "number_of_gears")
+	private int numberOfGears;
+	
+	public Bike(int sizeOfWheels, int numberOfGears) {
+		super();
+		this.sizeOfWheels = sizeOfWheels;
+		this.numberOfGears = numberOfGears;
+	}
+	
+	public int getNumberOfGears() {
+		return numberOfGears;
+	}
+	
+	public void setNumberOfGears(int numberOfGears) {
+		this.numberOfGears = numberOfGears;
+	}
+	
+	
+}

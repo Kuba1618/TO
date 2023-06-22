@@ -1,0 +1,14 @@
+package pl.kielce.entity.persons;
+
+public enum Degree {
+	
+	MASTER_OF_SCIENCE("M.Sc"),
+	DOCTOR_OF_PHILOSOPHY("Ph.D."),
+	PROFFESOR("Prof."),
+	DOCTOR_OF_SCIENCE("D.Sc");
+
+	Degree(String string) {
+		// TODO Auto-generated constructor stub
+	}
+
+}

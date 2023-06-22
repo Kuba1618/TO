@@ -1,0 +1,26 @@
+package pl.kielce.entity.persons;
+
+import java.util.Date;
+
+public class PhysicalWorker {
+	
+	private Date startJobDate;
+	private char department;
+	
+	public Date getStartJobDate() {
+		return startJobDate;
+	}
+	
+	public void setStartJobDate(Date startJobDate) {
+		this.startJobDate = startJobDate;
+	}
+	
+	public char getDepartment() {
+		return department;
+	}
+	
+	public void setDepartment(char department) {
+		this.department = department;
+	}
+
+}

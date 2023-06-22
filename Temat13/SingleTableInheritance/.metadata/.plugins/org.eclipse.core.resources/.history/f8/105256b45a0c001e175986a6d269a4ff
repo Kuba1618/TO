@@ -1,0 +1,39 @@
+package pl.kielce.entity.persons;
+
+import javax.persistence.Column;
+import com.github.javafaker.Faker;
+import pl.kielce.entity.vehicles.Vehicle;
+
+public class Employee extends Person{
+	
+	@Column (name = "insuaranceNumber")
+	private int insuaranceNumber;
+	@Column (name = "vehicle")
+	private Vehicle vehicle;
+	
+
+	public int getInsuaranceNumber() {
+		return insuaranceNumber;
+	}
+
+	public void setInsuaranceNumber(int insuaranceNumber) {
+		this.insuaranceNumber = insuaranceNumber;
+	}
+
+	public Vehicle getVehicle() {
+		return vehicle;
+	}
+
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
+	}
+
+	public void generateEmployee() {
+		Faker faker = new Faker();
+		//settings personFields 
+		generatePersonData();
+		//settings employee
+		faker.educator().campus();
+	}
+
+}

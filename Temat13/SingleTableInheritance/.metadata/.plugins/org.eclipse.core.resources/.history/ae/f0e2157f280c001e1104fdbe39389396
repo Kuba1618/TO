@@ -1,0 +1,24 @@
+package pl.kielce.entity.persons;
+
+public class Assistant {
+	
+	private String areaOfSpecialization;
+
+	
+	public String getAreaOfSpecialization() {
+		return areaOfSpecialization;
+	}
+
+	public void setAreaOfSpecialization(String areaOfSpecialization) {
+		this.areaOfSpecialization = areaOfSpecialization;
+	}
+
+
+
+
+	public void generateAssistant()
+	{
+		
+	}
+
+}

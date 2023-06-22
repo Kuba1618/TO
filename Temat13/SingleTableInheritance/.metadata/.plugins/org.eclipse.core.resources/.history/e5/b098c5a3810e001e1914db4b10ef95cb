@@ -1,0 +1,23 @@
+package pl.kielce.entity.persons;
+
+import com.github.javafaker.Faker;
+
+public class AssistantProfessor extends OfficeWorker{
+
+	String otherJob;
+
+	public String getOtherJob() {
+		return otherJob;
+	}
+
+	public void setOtherJob(String otherJob) {
+		this.otherJob = otherJob;
+	}
+	
+	public void generateAssistantProfessor()
+	{
+		Faker faker = new Faker();
+		generateOfficeWorker();
+		setOtherJob(faker.job().title());
+	}
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;courseProf&apos; in &apos;pl.kielce.tu.NewTest.main(...)&apos; to &apos;course&apos;&#x0D;&#x0A;- Original project: &apos;HibernateUniversityProject&apos;&#x0D;&#x0A;- Original element: &apos;pl.kielce.tu.NewTest.main(String[]).courseProf&apos;&#x0D;&#x0A;- Renamed element: &apos;courseProf&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;courseProf&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src\/test\/java=/test=/true=/=/optional=/true=/=/maven.pomderived=/true=/&lt;pl.kielce.tu{NewTest.java[NewTest~main~\[QString;@courseProf!1317!1349!1324!1333!QCourse;!0!false" name="course" references="true" stamp="1687426558010" version="1.0"/>
+</session>

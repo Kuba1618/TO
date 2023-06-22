@@ -1,0 +1,175 @@
+package pl.kielce.tu;
+
+import java.util.Random;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import pl.kielce.entity.Course;
+import pl.kielce.entity.persons.Assistant;
+import pl.kielce.entity.persons.AssistantProfessor;
+import pl.kielce.entity.persons.PhysicalWorker;
+import pl.kielce.entity.persons.Professor;
+import pl.kielce.entity.persons.Student;
+import pl.kielce.entity.persons.Teacher;
+import pl.kielce.entity.persons.TechnicalWorker;
+import pl.kielce.entity.vehicles.Car;
+import pl.kielce.entity.vehicles.Motorcycle;
+import pl.kielce.entity.vehicles.Vehicle;
+
+public class NewTest {
+
+		public static void main(String[] args) {
+			//Faker faker = new Faker(new Locale("pl-PL"));
+			
+			SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+			Session session = sessionFactory.openSession();
+			
+			session.beginTransaction();
+			
+			Random generator = new Random();
+			
+			for(int i = 0; i < 10; i++) {
+				int numberOfTeacherChilds = generator.nextInt(3); //generate number of Teacher child based on number of teacher class child
+				int numberOfVehicleChilds = generator.nextInt(4);
+				
+				Course courseProf = new Course();
+				courseProf.generateCourse();
+				
+				Vehicle vehicle = new Vehicle();
+				switch(numberOfVehicleChilds) {
+					case 1:
+					{
+						Car car = new Car();
+					    car.generateCar();
+						break;
+					}
+					case 2:{
+						Motorcycle
+						break;
+					}
+					case 3:{
+						break;
+					}
+					case 4: {
+						break;
+					}
+					default: {
+						break;
+					}
+				}
+				
+				
+			    Teacher teacher = null;
+			    switch(numberOfTeacherChilds) {
+				    case 1:{
+				    	Professor prof = new Professor();
+						prof.generateProfessor();
+						prof.setVehicle(car);
+						prof.setCourse(courseProf);
+						teacher = prof;
+						break;
+				    }
+				    case 2:{
+				    	AssistantProfessor assistantProf = new AssistantProfessor();
+				    	assistantProf.generateAssistantProfessor();
+				    	assistantProf.setVehicle(car);
+				    	assistantProf.setCourse(courseProf);
+				    	teacher = assistantProf;
+				    	break;
+				    }
+				    
+			    	case 3:{
+			    		Assistant assistant = new Assistant();
+			    		assistant.generateAssistant();
+			    		assistant.setVehicle(car);
+			    		assistant.setCourse(courseProf);
+			    		teacher = assistant;
+			    		break;
+			    	}
+			    	default: {
+			    		Assistant assistant = new Assistant();
+			    		assistant.generateAssistant();
+			    		assistant.setVehicle(car);
+			    		assistant.setCourse(courseProf);
+			    		teacher = assistant;
+			    		break;
+			    	}
+			    }
+			    
+				Motorcycle moto = new Motorcycle();
+			    moto.generateMotorcycle();
+					
+				Student student = new Student();
+				student.generateStudent();
+				student.setVehicle(moto);
+				student.setCourse(courseProf);
+				
+				Car carPW = new Car();
+			    carPW.generateCar();
+				
+				PhysicalWorker pW = new PhysicalWorker();
+				pW.generatePhysicalWorker();
+				pW.setVehicle(carPW);
+				
+				Motorcycle motoTW = new Motorcycle();
+				motoTW.generateMotorcycle();
+			    
+				TechnicalWorker tW = new TechnicalWorker();
+				tW.generateTechnicalWorker();
+				tW.setVehicle(motoTW);
+				
+				courseProf.setTeacher(teacher);
+				courseProf.setStudent(student);
+				session.save(courseProf); // before saving the student & teacher (teacher child's)
+				session.save(moto);
+				session.save(student);
+				session.save(car);
+				session.save(teacher); 
+				session.save(carPW);
+				session.save(pW);	
+				session.save(motoTW);
+				session.save(tW);
+			}
+			
+			session.getTransaction().commit();
+			
+			session.close();
+
+		}
+		
+		public Vehicle randomAndGenerateVehicle() {
+			Vehicle vehicle = new Vehicle();
+			Random generator  = new Random();
+			int numberKindOfVehicle = 4;
+			
+			switch(generator.nextInt(numberKindOfVehicle)) {
+				case 1: {
+					vehicle = new Car();
+					//vehicle.generateCar();   //ZROZUMIALE ALE dla Javy , a jak zrobić dla Hibernate ?
+					break;
+				}
+				case 2: {
+					break;
+				}
+				case 3:{
+					
+					break;
+				}
+				case 4: {
+					break;
+				}
+				default: {
+					vehicle new Scooter();
+					vehicle.generateScooter();
+				}
+			}
+			
+			return null;
+		}
+		
+}
+
+ 
+

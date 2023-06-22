@@ -1,0 +1,31 @@
+package pl.kielce.entity.persons;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+import com.github.javafaker.Faker;
+
+@Entity
+public class Assistant extends Teacher {
+	
+	@Column(name="area_of_specialization")
+	private String areaOfSpecialization; //programming language
+
+	
+	public String getAreaOfSpecialization() {
+		return areaOfSpecialization;
+	}
+
+	public void setAreaOfSpecialization(String areaOfSpecialization) {
+		this.areaOfSpecialization = areaOfSpecialization;
+	}
+
+	public void generateAssistant()
+	{
+		Faker faker = new Faker();
+		generateTeacher();
+		
+		setAreaOfSpecialization(faker.programmingLanguage().name());
+	}
+
+}
