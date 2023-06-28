@@ -1,0 +1,58 @@
+package pl.kielce.entity.persons;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+import com.github.javafaker.Faker;
+
+import pl.kielce.entity.vehicles.Vehicle;
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Employee extends Person{
+	
+	@Column (name = "insuarance_number")
+	private long insuranceNumber;
+	
+	@OneToMany
+	@JoinColumn(name="vehicle_id")
+	private Collection<Vehicle> listOfVehicles = new ArrayList<>();
+	
+	public long getInsuranceNumber() {
+        return insuranceNumber;
+    }
+
+    public void setInsuranceNumber(long insuranceNumber) {
+        this.insuranceNumber = insuranceNumber;
+    }
+   	
+	public Collection<Vehicle> getListOfVehicles() {
+		return listOfVehicles;
+	}
+
+	public void setListOfVehicles(Collection<Vehicle> listOfVehicles) {
+		this.listOfVehicles = listOfVehicles;
+	}
+
+	public void generateEmployee() {
+		Faker faker = new Faker();
+		
+		//fill personFields 
+		generatePerson();
+		
+		//settings employee
+		long range = 99999999999l - 10000000000l;
+	    long insuaranceNumber = (long) (Math.random() * (range) + 10000000000l);
+	    setInsuranceNumber(insuaranceNumber);
+	    
+	    //--------- setVehicle() must be called in test class -----
+	}
+
+}

@@ -1,0 +1,195 @@
+package pl.kielce.tu;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.Random;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import pl.kielce.entity.Course;
+import pl.kielce.entity.persons.Assistant;
+import pl.kielce.entity.persons.AssistantProfessor;
+import pl.kielce.entity.persons.PhysicalWorker;
+import pl.kielce.entity.persons.Professor;
+import pl.kielce.entity.persons.Student;
+import pl.kielce.entity.persons.Teacher;
+import pl.kielce.entity.persons.TechnicalWorker;
+import pl.kielce.entity.vehicles.Bike;
+import pl.kielce.entity.vehicles.Car;
+import pl.kielce.entity.vehicles.Motorcycle;
+import pl.kielce.entity.vehicles.Scooter;
+import pl.kielce.entity.vehicles.Vehicle;
+
+public class NewTest {
+
+		public static void main(String[] args) {
+			//Faker faker = new Faker(new Locale("pl-PL"));
+			
+			SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+			Session session = sessionFactory.openSession();
+			
+			session.beginTransaction();
+			
+			Random generator = new Random();
+			
+			long startTime = System.currentTimeMillis();
+			
+			for(int i = 0; i < 500; i++) {
+				
+				int numberOfTeacherChilds = generator.nextInt(3); //generate number of Teacher child based on number of teacher class child
+				int numberOfVehicleChilds = generator.nextInt(4);
+				
+				Course course = new Course();
+				course.generateCourse();
+				
+			    Teacher teacher = null;
+			    switch(numberOfTeacherChilds) {
+				    case 1:{
+				    	Professor prof = new Professor();
+						prof.generateProfessor();
+						prof.setCourse(course);
+						teacher = prof;
+						break;
+				    }
+				    case 2:{
+				    	AssistantProfessor assistantProf = new AssistantProfessor();
+				    	assistantProf.generateAssistantProfessor();
+				    	assistantProf.setCourse(course);
+				    	teacher = assistantProf;
+				    	break;
+				    }
+				    
+			    	case 3:{
+			    		Assistant assistant = new Assistant();
+			    		assistant.generateAssistant();
+			    		assistant.setCourse(course);
+			    		teacher = assistant;
+			    		break;
+			    	}
+			    	
+			    	default: {
+			    		Assistant assistant = new Assistant();
+			    		assistant.generateAssistant();
+			    		assistant.setCourse(course);
+			    		teacher = assistant;
+			    		break;
+			    	}
+			    }
+			    
+			    Collection<Vehicle> vehiclesOfTW = tW.getListOfVehicles();
+				vehiclesOfTW.add(randomAndGenerateVehicle());
+				vehiclesOfTW.add(randomAndGenerateVehicle());
+				vehiclesOfTW.add(randomAndGenerateVehicle());
+				vehiclesOfTW.add(randomAndGenerateVehicle());
+				vehiclesOfTW.add(randomAndGenerateVehicle());
+				tW.setListOfVehicles(vehiclesOfTW);
+			  
+					
+				Student student = new Student();
+				student.generateStudent();
+				student.setVehicle(randomAndGenerateVehicle());
+				student.setCourse(course);
+				
+				PhysicalWorker pW = new PhysicalWorker();
+				pW.generatePhysicalWorker();
+				Collection<Vehicle> vehiclesOfPW = pW.getListOfVehicles();
+				vehiclesOfPW.add(randomAndGenerateVehicle());
+				vehiclesOfPW.add(randomAndGenerateVehicle());
+				vehiclesOfPW.add(randomAndGenerateVehicle());
+				vehiclesOfPW.add(randomAndGenerateVehicle());
+				vehiclesOfPW.add(randomAndGenerateVehicle());
+				pW.setListOfVehicles(vehiclesOfPW);
+				
+			    
+				TechnicalWorker tW = new TechnicalWorker();
+				tW.generateTechnicalWorker();
+				Collection<Vehicle> vehiclesOfTW = tW.getListOfVehicles();
+				vehiclesOfTW.add(randomAndGenerateVehicle());
+				vehiclesOfTW.add(randomAndGenerateVehicle());
+				vehiclesOfTW.add(randomAndGenerateVehicle());
+				vehiclesOfTW.add(randomAndGenerateVehicle());
+				vehiclesOfTW.add(randomAndGenerateVehicle());
+				tW.setListOfVehicles(vehiclesOfTW);
+				
+				course.setTeacher(teacher);
+				course.setStudent(student);
+				session.save(course); // before saving the student & teacher (teacher child's)
+				session.save(student.getVehicle());
+				session.save(student);
+				
+				saveListOfVehicles(session,teacher.getListOfVehicles());
+				
+				session.save(teacher); 
+				
+				saveListOfVehicles(session,pW.getListOfVehicles());
+				
+				session.save(pW);	
+				
+				saveListOfVehicles(session,tW.getListOfVehicles());
+				
+				session.save(tW);
+			}
+			
+			session.getTransaction().commit();
+			
+			long endTime = System.currentTimeMillis();
+			
+			System.out.println((endTime - startTime) + " ms");
+			
+			session.close();
+
+		}
+		
+		public static Vehicle randomAndGenerateVehicle() {
+			Random generator  = new Random();
+			int numberKindOfVehicle = 4;
+			
+			Vehicle vehicle = null;
+			switch(generator.nextInt(numberKindOfVehicle)) {
+				case 1: {
+					Car car = new Car();
+				    car.generateCar();
+				    vehicle = car;
+					break;
+				}
+				case 2: {
+					Motorcycle motorcycle = new Motorcycle();
+					motorcycle.generateMotorcycle();
+					vehicle = motorcycle;
+					break;
+				}
+				case 3:{
+					Bike bike = new Bike();
+					bike.generateBike();
+					vehicle = bike;
+					break;
+				}
+				case 4: {
+					Scooter scooter = new Scooter();
+					scooter.generateScooter();
+					vehicle = scooter;
+					break;
+				}
+				default: {
+					Scooter scooter = new Scooter();
+					scooter.generateScooter();
+					vehicle = scooter;
+					break;
+				}
+			}
+			
+			return vehicle;
+		}
+		
+		public static void saveListOfVehicles(Session session,Collection<Vehicle> collection) {
+			
+			for(Vehicle vehicle1 : collection) {
+				session.save(vehicle1);
+			}
+		}
+}
+
+ 
+

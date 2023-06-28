@@ -1,0 +1,50 @@
+package pl.kielce.tu;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import pl.kielce.entity.persons.Person;
+
+
+public class UpdateQuery{
+
+	public static void main(String[] args) {
+		
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		//Session session = factory.getCurrentSession(); 
+		
+		try {
+				session.beginTransaction();
+				Collection<Person> thePersons = new ArrayList<>(); 
+				long startTime = System.currentTimeMillis();
+				
+				thePersons.addAll(session.createQuery("from Person").list());
+				
+				thePersons.parallelStream().forEach(person -> {
+					person.setPhone(123456789);
+					session.save(person);
+				});
+				
+				session.getTransaction().commit();
+				long endTime = System.currentTimeMillis();
+				System.out.println(endTime - startTime + " ms");
+				
+				System.out.println("Size of person list: " + thePersons.size());
+				
+
+		
+		}finally {
+			factory.close();
+		}
+	}
+	
+}

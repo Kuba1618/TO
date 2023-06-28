@@ -1,0 +1,48 @@
+package pl.kielce.tu;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import pl.kielce.entity.persons.Person;
+
+
+public class DeleteQuery{
+
+	public static void main(String[] args) {
+		
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		//Session session = factory.getCurrentSession(); 
+		
+		try {
+				session.beginTransaction();
+				Collection<Person> theVehicles = new ArrayList<>(); 
+				long startTime = System.currentTimeMillis();
+				
+				theVehicles.addAll(session.createQuery("from Person").list());
+				
+				theVehicles.parallelStream().forEach(person -> {
+					System.out.println(person.getFirstName());
+					//session.save(person);
+				});
+				
+				session.getTransaction().commit();
+				
+				long endTime = System.currentTimeMillis();
+				System.out.println(endTime - startTime + " ms");
+
+		
+		}finally {
+			factory.close();
+		}
+	}
+	
+}

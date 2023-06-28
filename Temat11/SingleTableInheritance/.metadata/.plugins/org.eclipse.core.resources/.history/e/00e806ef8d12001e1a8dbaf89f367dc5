@@ -1,0 +1,44 @@
+package pl.kielce.tu;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import pl.kielce.entity.vehicles.*;
+
+
+public class DeleteQuery{
+
+	public static void main(String[] args) {
+		
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		//Session session = factory.getCurrentSession(); 
+		
+		try {
+				session.beginTransaction();
+				Collection<Vehicle> theVehicles = new ArrayList<>(); 
+				long startTime = System.currentTimeMillis();
+				
+				theVehicles.addAll(session.createQuery("from Vehicle").list());
+				
+				for(Vehicle v : theVehicles){
+					session.delete(v);
+				}
+				
+				session.getTransaction().commit();
+				
+				long endTime = System.currentTimeMillis();
+				
+				System.out.println(endTime - startTime + " ms");
+
+		
+		}finally {
+			factory.close();
+		}
+	}
+	
+}

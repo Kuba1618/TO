@@ -1,0 +1,62 @@
+package pl.kielce.tu;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import pl.kielce.entity.persons.*;
+import pl.kielce.entity.vehicles.*;
+
+public class QueryTest {
+
+	public static void main(String[] args) {
+		
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		//Session session = factory.getCurrentSession(); 
+		
+		try {
+				session.beginTransaction();
+				Collection<Person> thePersons = new ArrayList<>(); 
+				long startTime = System.currentTimeMillis();
+				thePersons.addAll(session.createQuery("select * from Student").list());
+				
+				session.getTransaction().commit();
+				long endTime = System.currentTimeMillis();
+				System.out.println(endTime - startTime + "ms");
+				
+				System.out.println("\n Done !");
+				System.out.println("Size of person list: " + thePersons.size());
+				//displayStudents(thePeople);
+				
+//				try {
+//					savePeopleToFile(thePeople);
+//				} catch (FileNotFoundException e) {
+//					e.printStackTrace();
+//				}
+		
+		}finally {
+			factory.close();
+		}
+	}
+	
+	private static void displayStudents(Collection<Person> thePeople) {
+		for(Person tempStudent : thePeople) {
+			System.out.println(tempStudent.toString());
+		}
+	}
+	
+	public static void savePeopleToFile(Collection<Person> thePeople) throws FileNotFoundException {
+	    PrintWriter pw = new PrintWriter(new FileOutputStream("abc.txt"));
+	    for (Person person : thePeople)
+	        pw.println(person.toString());
+	    pw.close();
+	}
+}
